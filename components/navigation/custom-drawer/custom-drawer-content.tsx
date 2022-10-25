@@ -1,10 +1,11 @@
 import { View, Text, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerContentScrollView, useDrawerProgress } from '@react-navigation/drawer';
 import icons from '../../../constants/icons';
 import dummyData from '../../../constants/dummy-data';
 
 import CustomDrawerItem from './custom-drawer-item';
+import Animated, { Adaptable } from 'react-native-reanimated';
 
 const CustomDrawerContent: React.FC<{
     navigation: any;
