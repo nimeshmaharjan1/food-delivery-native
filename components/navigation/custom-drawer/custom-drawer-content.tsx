@@ -1,14 +1,36 @@
-import { View, Text, SafeAreaView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, Image, Pressable } from 'react-native';
 import React from 'react';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerContentScrollView, useDrawerProgress } from '@react-navigation/drawer';
 import icons from '../../../constants/icons';
 import dummyData from '../../../constants/dummy-data';
 
 import CustomDrawerItem from './custom-drawer-item';
+import Animated, { Adaptable } from 'react-native-reanimated';
+import { useAppDispatch } from '../../../store';
+import { getSelectedTab, setSelectedDrawerTab } from '../../../store/modules/drawer';
+import { useSelector } from 'react-redux';
 
 const CustomDrawerContent: React.FC<{
     navigation: any;
 }> = ({ navigation }) => {
+    const dispatch = useAppDispatch();
+    const drawerItemsTop = [
+        { label: 'Home', icon: icons.home },
+        { label: 'Cart', icon: icons.cart },
+        { label: 'Notification', icon: icons.notification },
+        { label: 'My Wallet', icon: icons.wallet },
+    ];
+    const drawerItemsBot = [
+        { label: 'Favourites', icon: icons.favourite },
+        { label: 'Track your order', icon: icons.location },
+        { label: 'Settings', icon: icons.setting },
+        { label: 'Help Center', icon: icons.help },
+    ];
+    const selectDrawerTab = (tab: string) => {
+        dispatch(setSelectedDrawerTab(tab));
+        navigation.navigate('MainLayout');
+    };
+    const selectedTab = useSelector(getSelectedTab);
     return (
         <DrawerContentScrollView scrollEnabled contentContainerStyle={{ flex: 1 }}>
             <View className="flex flex-1 px-3">
@@ -28,20 +50,30 @@ const CustomDrawerContent: React.FC<{
                 </TouchableOpacity>
                 {/* Drawer Items */}
                 <View className="flex flex-1 mt-4">
-                    <CustomDrawerItem icon={icons.home} label="Home" />
-                    <CustomDrawerItem icon={icons.cart} label="Cart" />
-                    <CustomDrawerItem icon={icons.notification} label="Notification" />
-                    <CustomDrawerItem icon={icons.wallet} label="My Wallet" />
+                    {drawerItemsTop.map((item) => (
+                        <CustomDrawerItem
+                            icon={item.icon}
+                            label={item.label}
+                            isFocused={selectedTab === item.label ? true : false}
+                            onPress={() => selectDrawerTab(item.label)}
+                            key={item.label}
+                        ></CustomDrawerItem>
+                    ))}
                     {/* Line Divider */}
                     <View className="h-[1.2px] my-3 ml-3 bg-lightGray1"></View>
-                    <CustomDrawerItem icon={icons.favourite} label="Favourites" />
-                    <CustomDrawerItem icon={icons.location} label="Track your order" />
-                    <CustomDrawerItem icon={icons.setting} label="Settings" />
-                    <CustomDrawerItem icon={icons.help} label="Help Center" />
+                    {drawerItemsBot.map((item) => (
+                        <CustomDrawerItem
+                            icon={item.icon}
+                            label={item.label}
+                            isFocused={selectedTab === item.label ? true : false}
+                            onPress={() => selectDrawerTab(item.label)}
+                            key={item.label}
+                        ></CustomDrawerItem>
+                    ))}
                 </View>
                 {/* Logout */}
                 <View className="mb-3">
-                    <CustomDrawerItem icon={icons.logout} label="Logout" />
+                    <CustomDrawerItem onPress={() => selectDrawerTab('Logout')} icon={icons.logout} label="Logout" isFocused={false} />
                 </View>
             </View>
         </DrawerContentScrollView>
