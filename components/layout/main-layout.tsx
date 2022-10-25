@@ -11,7 +11,7 @@ const StyledText = styled(Text);
 const MainLayout = () => {
     const { colorScheme, toggleColorScheme } = useColorScheme();
 
-    const drawerProgress = useDrawerProgress();
+    const drawerProgress = useDrawerProgress() as any;
     const animatedStyle = useAnimatedStyle(() => {
         const scale = interpolate(drawerProgress.value, [0, 1], [1, 0.8], {
             extrapolateRight: Extrapolate.CLAMP,
