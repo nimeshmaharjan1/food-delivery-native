@@ -21,7 +21,7 @@ function App() {
                 >
                     <Stack.Screen name="Home" component={CustomDrawer}></Stack.Screen>
                 </Stack.Navigator>
-                <StatusBar style={`${colorScheme === 'dark' ? 'dark' : 'light'}`}></StatusBar>
+                <StatusBar style={`dark`}></StatusBar>
             </NavigationContainer>
         </Provider>
     );

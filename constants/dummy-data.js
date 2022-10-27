@@ -28,7 +28,7 @@ const categories = [
 const hamburger = {
     id: 1,
     name: 'Hamburger',
-    description: 'Chicken patty hamburger',
+    description: 'Buff patty burger',
     categories: [1, 2],
     price: 15.99,
     calories: 78,

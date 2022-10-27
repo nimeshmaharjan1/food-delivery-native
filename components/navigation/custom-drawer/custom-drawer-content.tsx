@@ -17,7 +17,7 @@ const CustomDrawerContent: React.FC<{
     const drawerItemsTop = [
         { label: 'Home', icon: icons.home },
         { label: 'Cart', icon: icons.cart },
-        { label: 'Notification', icon: icons.notification },
+        { label: 'Notifications', icon: icons.notifications },
         { label: 'My Wallet', icon: icons.wallet },
     ];
     const drawerItemsBot = [

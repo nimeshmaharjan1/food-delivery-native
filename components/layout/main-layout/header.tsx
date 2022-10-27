@@ -1,5 +1,6 @@
-import { View, Text, StyleProp, ViewStyle } from 'react-native';
+import { View, Text, StyleProp, ViewStyle, SafeAreaView } from 'react-native';
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 
 const Header: React.FC<{ containerStyles: any; title: string; leftComponent: React.ReactNode; rightComponent: React.ReactNode }> = ({
     containerStyles,
@@ -8,7 +9,7 @@ const Header: React.FC<{ containerStyles: any; title: string; leftComponent: Rea
     rightComponent,
 }) => {
     return (
-        <View style={{ flexDirection: 'row', ...containerStyles }}>
+        <View style={{ flexDirection: 'row', ...containerStyles }} className=" mt-8 px-3">
             {/* left */}
             {leftComponent}
             {/* title */}
