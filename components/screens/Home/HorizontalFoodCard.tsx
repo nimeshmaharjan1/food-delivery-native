@@ -19,7 +19,7 @@ const HorizontalFoodCard: React.FC<{ containerStyle: TextStyle; imageStyle: Styl
                 <Text className="text-sm font-bold text-darkGray2">{item.description}</Text>
                 <Text className="mt-1 font-bold text-lg">${item.price}</Text>
                 {/* <Calories></Calories> */}
-                <View className="flex flex-row absolute" style={{ position: 'absolute', top: -20, right: 20 }}>
+                <View className="flex flex-row absolute" style={{ position: 'absolute', top: -18, right: 20 }}>
                     <Image source={icons.calories} className="h-7 w-7"></Image>
                     <Text className="text-darkGray2 text-sm">{item.calories} Calories</Text>
                 </View>
